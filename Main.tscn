@@ -1,0 +1,89 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://img/back_0.png" type="Texture" id=1]
+[ext_resource path="res://img/back_1.png" type="Texture" id=2]
+[ext_resource path="res://Main.gd" type="Script" id=3]
+[ext_resource path="res://img/back_2.png" type="Texture" id=4]
+[ext_resource path="res://img/back_3.png" type="Texture" id=5]
+[ext_resource path="res://img/back_4.png" type="Texture" id=6]
+[ext_resource path="res://img/dragon1.png" type="Texture" id=7]
+[ext_resource path="res://img/dragon2.png" type="Texture" id=8]
+[ext_resource path="res://img/dragon3.png" type="Texture" id=9]
+[ext_resource path="res://img/back_9.png" type="Texture" id=10]
+[ext_resource path="res://img/back_10.png" type="Texture" id=11]
+[ext_resource path="res://img/back_11.png" type="Texture" id=12]
+[ext_resource path="res://img/back_12.png" type="Texture" id=13]
+[ext_resource path="res://img/back_7.png" type="Texture" id=14]
+[ext_resource path="res://img/back_6.png" type="Texture" id=15]
+[ext_resource path="res://img/back_5.png" type="Texture" id=16]
+[ext_resource path="res://img/back_8.png" type="Texture" id=17]
+[ext_resource path="res://img/back_13.png" type="Texture" id=18]
+[ext_resource path="res://img/back_14.png" type="Texture" id=19]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 42.035, 31.6505 )
+
+[sub_resource type="Theme" id=4]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.235294, 0.227451, 0.266667, 1 )
+expand_margin_left = 50.0
+expand_margin_right = 50.0
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.235294, 0.227451, 0.266667, 1 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 19 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="dragon" type="KinematicBody2D" parent="."]
+position = Vector2( 230, 73 )
+
+[node name="dragonImages" type="AnimatedSprite" parent="dragon"]
+position = Vector2( 81, 71 )
+scale = Vector2( 0.7, 0.7 )
+frames = SubResource( 1 )
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dragon"]
+position = Vector2( 80.0988, 76.026 )
+shape = SubResource( 2 )
+one_way_collision_margin = 0.0
+
+[node name="Button" type="Button" parent="."]
+margin_left = 661.0
+margin_top = 338.0
+margin_right = 783.0
+margin_bottom = 397.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/normal = SubResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 686.281, 360.875 )
+scale = Vector2( 0.71696, 0.666898 )
+z_index = -1
+frames = SubResource( 6 )
+frame = 13
+playing = true
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_Button_mouse_exited"]
